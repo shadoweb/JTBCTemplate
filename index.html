@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JTBCTemplate</title>
+  <meta charset="utf-8">
+</head>
+<body>
+<a href="./">❤标准模式</a>&nbsp;&nbsp;<a href="./target.html">🖤目标模式</a>
+<hr />
+<template id="template" is="jtbc-template">
+  <h1>${name}</h1>
+  <h2>${$raw.title}</h2>
+  <ul>
+    <template is="jtbc-template" key="list">
+      <li>${city}</li>
+    </template>
+  </ul>
+</template>
+<script type="text/javascript">
+let data = {
+  'name': 'JTBCTemplate',
+  'title': '我们中国有很多<font color="red">美丽</font>地方..',
+  'list': [
+    {'city': '上海'},
+    {'city': '苏州'},
+    {'city': '成都'},
+    {'city': '重庆'},
+    {'city': '深圳'},
+    {'city': '厦门'},
+    {'city': '北京'},
+    {'city': '青岛'},
+    {'city': '珠海'},
+    {'city': '丽江'}
+  ]
+};
+document.querySelector('#template').setAttribute('data', JSON.stringify(data));
+import('./components/JTBCTemplate/JTBCTemplate.js').then(module => { customElements.define('jtbc-template', module.default, {extends: 'template'}); });
+</script>
+</body>
+</html>
